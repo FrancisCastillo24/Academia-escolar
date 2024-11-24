@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Bienvenido a la academia velazquez</h1>
-</body>
-</html>
+@extends("layouts.app")
+@section('title', 'Página de Inicio')
+
+@section("content")
+<div class="container">
+    <h3>Esto es una prueba</h3>
+</div>
+@endsection
