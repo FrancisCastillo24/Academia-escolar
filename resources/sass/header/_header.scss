@@ -1,18 +1,17 @@
 header {
-    display: flex; /* Asegura un diseño flexible si necesitas centrar otros elementos */
-    justify-content: center; /* Centra el contenido horizontalmente */
-    align-items: center; /* Centra el contenido verticalmente */
-    height: 300px; /* Altura del header */
-    background-color: #f5f5f5; /* Color de fondo (opcional) */
+    display: flex; // Asegura un diseño flexible si necesitas centrar otros elementos
+    justify-content: center; // Centra el contenido horizontalmente
+    align-items: center; // Centra el contenido verticalmente
+    height: 300px; // Altura del header
 
     .header_logo {
-        width: 50%; /* La imagen ocupará el 50% del ancho del contenedor */
-        height: 200px; /* Mantiene las proporciones de la imagen */
-        background-image: url("/img/full_azul.png"); /* Asegúrate de que la ruta sea correcta */
+        width: 50%;
+        height: 200px;
+        background-image: url('../img/full_azul.png'); // Ruta relativa al CSS compilado
         background-position: center;
         background-repeat: no-repeat;
-        background-size: contain; /* La imagen no se recorta */
-        display: block; /* Asegura que se muestre como un elemento de bloque */
-        margin: 0 auto; /* Centra horizontalmente */
+        background-size: contain;
+        display: block;
+        margin: 0 auto;
     }
 }
