@@ -21,6 +21,35 @@
         <li class="nav-item">
           <a class="nav-link" href="#">Prueba</a>
         </li>
+
+        <!-- Si el usuario está autenticado -->
+        @auth
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              {{ Auth::user()->name }}
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li>
+                <a class="dropdown-item" href="{{ route('profile.edit') }}">Perfil</a>
+              </li>
+              <li>
+                <form method="POST" action="{{ route('logout') }}">
+                  @csrf
+                  <button type="submit" class="dropdown-item">Cerrar sesión</button>
+                </form>
+              </li>
+            </ul>
+          </li>
+        @endauth
+        <!-- Si el usuario no está autenticado -->
+        @guest
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('login') }}">Iniciar sesión</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('register') }}">Registrarse</a>
+          </li>
+        @endguest
       </ul>
     </div>
   </div>
