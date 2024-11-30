@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Muestra el listado de cursos
      */
     public function index()
     {
-        //
+        // Almaceno en una variable los cursos y lo muestro en la ruta
+        $courses = Course::all();
+        return view("user.course.index", ["courses" => $courses]);
     }
 
     /**
@@ -23,11 +26,29 @@ class CourseController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Almaceno los cursos
      */
     public function store(Request $request)
     {
-        //
+        // Validamos los campos
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'duration' => 'required|nullable',
+            'start_date' => 'required|date_format:H:i',
+            'start_end' => 'required|date_format:H:i|after:start_time',
+        ]);
+
+        // Creamos los cursos
+        Course::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'duration' => $request->duration,
+            'start_date' => $request->start_date,
+            'start_end' => $request->start_end
+        ]);
+
+        return redirect()->route("course.index")->with("success", "Curso almacenado en la base de datos");
     }
 
     /**

@@ -27,6 +27,11 @@
         @yield("content")
     </main>
 
+    <!-- Contenido secundario -->
+    <section>
+        @yield("content_second")
+    </section>
+
     <!-- Pie de página -->
     <footer>
         <p class="text-center">© 2024 Mi Aplicación. Todos los derechos reservados.</p>

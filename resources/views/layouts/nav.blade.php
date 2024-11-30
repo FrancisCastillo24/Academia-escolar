@@ -7,10 +7,10 @@
     <div class="collapse navbar-collapse justify-content-around text-lg-start text-center" id="navbarNav">
       <ul class="navbar-nav gap-3 gap-lg-5"> <!-- Ajustamos los espacios -->
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link" href="{{ url('/') }}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
+          <a class="nav-link" href="{{ route('course.index') }}">Cursos</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Pricing</a>
