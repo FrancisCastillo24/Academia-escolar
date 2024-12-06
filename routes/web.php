@@ -1,29 +1,34 @@
 <?php
 
 use App\Http\Controllers\CourseController;
-use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 Route::get('/', function () {
+    // Si el usuario está autenticado
     if (Auth::check()) {
-        return view('home'); // O la vista que deseas mostrar después de autenticarse
+        // Si está autenticado, redirigir al dashboard correspondiente
+        return Auth::user()->isAdmin()
+            ? redirect()->route('admin.dashboard') 
+            : redirect()->route('user.dashboard');
     }
-    return redirect()->route('login'); // Redirige al login si no está autenticado
+
+    // Si no está autenticado, redirigir al login
+    return redirect()->route('login');
 });
 
-Route::get('/home', function () {
-    return view('home');
-})->middleware(['auth', 'verified'])->name('home');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+// Ruta para el dashboard del usuario estándar
+Route::get('/user-dashboard', function () {
+    return view('home'); // Vista home.blade.php
+})->middleware(['auth', 'verified'])->name('user.dashboard');
+
+// Ruta para el dashboard del administrador
+Route::get('/admin-dashboard', function () {
+    return view('adminHome'); // Vista adminHome.blade.php
+})->middleware(['auth', 'verified'])->name('admin.dashboard');
 
 require __DIR__ . '/auth.php';
 
+// Rutas para el controlador de cursos
 Route::resource('course', CourseController::class);
