@@ -10,16 +10,16 @@
           <a class="nav-link" href="{{ url('/') }}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('course.index') }}">Cursos</a>
+          <a class="nav-link" href="{{ route('course.index') }}">Clases</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
+          <a class="nav-link" href="#">Contacto</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Disabled</a>
+          <a class="nav-link" href="#">Talleres</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Prueba</a>
+          <a class="nav-link" href="#">Reseñas</a>
         </li>
 
         <!-- Si el usuario está autenticado -->
@@ -41,11 +41,9 @@
             </ul>
           </li>
         @endauth
+
         <!-- Si el usuario no está autenticado -->
         @guest
-          <li class="nav-item">
-            <a class="nav-link" href="{{ route('login') }}">Iniciar sesión</a>
-          </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ route('register') }}">Registrarse</a>
           </li>

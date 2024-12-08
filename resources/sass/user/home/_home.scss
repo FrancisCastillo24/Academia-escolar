@@ -1,0 +1,9 @@
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease; // Transición suave para el movimiento y la sombra
+  
+    &:hover {
+      transform: scale(1.05);  // Aumenta un poco el tamaño del card
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);  // Añade una sombra cuando el card está en hover
+    }
+  }
+  

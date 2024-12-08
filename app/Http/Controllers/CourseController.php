@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
 {
@@ -12,9 +13,12 @@ class CourseController extends Controller
      */
     public function index()
     {
-        // Almaceno en una variable los cursos y lo muestro en la ruta
+        // Almaceno en una variable los cursos y lo muestro en la ruta dependiendo el rol
+        $user = Auth::user();
         $courses = Course::all();
-        return view("user.course.index", ["courses" => $courses]);
+
+        // $view = $user->isAdmin() ? 'admin.course.index' : 'user.course.index';
+        return view('user.course.index', ["courses" => $courses]);
     }
 
     /**
@@ -34,16 +38,14 @@ class CourseController extends Controller
         $request->validate([
             'name' => 'required',
             'description' => 'required',
-            'duration' => 'required|nullable',
-            'start_date' => 'required|date_format:H:i',
-            'start_end' => 'required|date_format:H:i|after:start_time',
+            'start_date' => 'required|date',
+            'start_end' => 'required|date|after:start_date',
         ]);
 
         // Creamos los cursos
         Course::create([
             'name' => $request->name,
             'description' => $request->description,
-            'duration' => $request->duration,
             'start_date' => $request->start_date,
             'start_end' => $request->start_end
         ]);

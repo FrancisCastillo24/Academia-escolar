@@ -1,8 +1,14 @@
-@extends("layouts.main")
-@section('title', 'Página de Inicio')
+<!DOCTYPE html>
+<html lang="en">
 
-@section("content")
-<div class="container">
-    <h3>Panel administrativo</h3>
-</div>
-@endsection
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <a href="{{ route('course.index') }}">Pincha aquí para crear un curso</a>
+</body>
+
+</html>
