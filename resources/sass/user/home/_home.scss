@@ -1,4 +1,7 @@
 .card {
+  width: 100%;
+  max-width: 300px; /* Define un ancho máximo uniforme para todos los cards */
+  margin: 0 auto;   /* Alinea los cards al centro si es necesario */
     transition: transform 0.3s ease, box-shadow 0.3s ease; // Transición suave para el movimiento y la sombra
   
     &:hover {

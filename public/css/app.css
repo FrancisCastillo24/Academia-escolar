@@ -1,3 +1,4 @@
+@charset "UTF-8";
 header {
   display: flex;
   justify-content: center;
@@ -16,6 +17,9 @@ header .header_logo {
 }
 
 .card {
+  width: 100%;
+  max-width: 300px; /* Define un ancho máximo uniforme para todos los cards */
+  margin: 0 auto; /* Alinea los cards al centro si es necesario */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .card:hover {

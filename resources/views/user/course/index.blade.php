@@ -51,7 +51,7 @@
                         <i class="bi bi-calculator"></i>
                     </div>
                     <h4 class="card-title" style="color: #333; font-family: 'Arial', sans-serif;">Matemáticas</h4>
-                    <p class="card-text" style="color: #666;">Matemáticas para Primaria, ESO, Bachillerato y Universidad</p>
+                    <p class="card-text" style="color: #666;">Matemáticas para Primaria, ESO, Bachillerato y Universidad. Te preparamos con total seguridad</p>
                 </div>
             </div>
         </div>
@@ -64,7 +64,7 @@
                         <i class="bi bi-flask"></i>
                     </div>
                     <h4 class="card-title" style="color: #333; font-family: 'Arial', sans-serif;">Química</h4>
-                    <p class="card-text" style="color: #666;">Química para ESO, Bachillerato y Universidad</p>
+                    <p class="card-text" style="color: #666;">Química para ESO, Bachillerato y Universidad. Te preparamos con total seguridad</p>
                 </div>
             </div>
         </div>
@@ -77,7 +77,7 @@
                         <i class="bi bi-globe"></i>
                     </div>
                     <h4 class="card-title" style="color: #333; font-family: 'Arial', sans-serif;">Ciencias Sociales</h4>
-                    <p class="card-text" style="color: #666;">Ciencias Sociales para Primaria, ESO y Bachillerato</p>
+                    <p class="card-text" style="color: #666;">Ciencias Sociales para Primaria, ESO y Bachillerato. Te preparamos con total seguridad</p>
                 </div>
             </div>
         </div>
@@ -90,7 +90,7 @@
                         <i class="bi bi-asterisk"></i>
                     </div>
                     <h4 class="card-title" style="color: #333; font-family: 'Arial', sans-serif;">Física</h4>
-                    <p class="card-text" style="color: #666;">Física para ESO, Bachillerato y Universidad</p>
+                    <p class="card-text" style="color: #666;">Física para ESO, Bachillerato y Universidad. Te preparamos con total seguridad</p>
                 </div>
             </div>
         </div>
@@ -103,7 +103,7 @@
                         <i class="bi bi-pencil-square"></i>
                     </div>
                     <h4 class="card-title" style="color: #333; font-family: 'Arial', sans-serif;">Lengua</h4>
-                    <p class="card-text" style="color: #666;">Lengua y Literatura para Primaria, ESO y Bachillerato</p>
+                    <p class="card-text" style="color: #666;">Lengua y Literatura para Primaria, ESO y Bachillerato. Te preparamos con total seguridad</p>
                 </div>
             </div>
         </div>
@@ -116,7 +116,7 @@
                         <i class="bi bi-flag"></i>
                     </div>
                     <h4 class="card-title" style="color: #333; font-family: 'Arial', sans-serif;">Acceso Grado Superior</h4>
-                    <p class="card-text" style="color: #666;">Prepara tu futuro profesional con el curso de Acceso a Grado Superior</p>
+                    <p class="card-text" style="color: #666;">Prepara tu futuro profesional con el curso de Acceso a Grado Superior. Te preparamos con total seguridad</p>
                 </div>
             </div>
         </div>
