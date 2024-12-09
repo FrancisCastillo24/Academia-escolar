@@ -4,19 +4,6 @@ use App\Http\Controllers\CourseController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/', function () {
-//     // Si el usuario está autenticado
-//     if (Auth::check()) {
-//         // Si está autenticado, redirigir al dashboard correspondiente
-//         return Auth::user()->isAdmin()
-//             ? redirect()->route('admin.dashboard') 
-//             : redirect()->route('user.dashboard');
-//     }
-
-//     // Si no está autenticado, redirigir al login
-//     return redirect()->route('login');
-// });
-
 Route::get('/', function (){
     return redirect()->route('user.dashboard');
 });
@@ -34,4 +21,10 @@ Route::get('/admin-dashboard', function () {
 require __DIR__ . '/auth.php';
 
 // Rutas para el controlador de cursos
-Route::resource('course', CourseController::class);
+// Route::resource('course', CourseController::class);
+Route::prefix('admin') // Prefijo para todas las rutas del administrador
+    ->name('admin.') // Prefijo de nombres de las rutas
+    ->middleware(['auth', 'admin']) // Puedes agregar el middleware que necesites
+    ->group(function () {
+        Route::resource('courses', CourseController::class); // Esto automáticamente creará las rutas para index, create, store, etc.
+    });

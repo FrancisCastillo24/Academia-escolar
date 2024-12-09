@@ -17,8 +17,8 @@ class CourseController extends Controller
         $user = Auth::user();
         $courses = Course::all();
 
-        // $view = $user->isAdmin() ? 'admin.course.index' : 'user.course.index';
-        return view('user.course.index', ["courses" => $courses]);
+        $view = $user->isAdmin() ? 'admin.course.index' : 'user.course.index';
+        return view($view, ["courses" => $courses]);
     }
 
     /**

@@ -1,0 +1,129 @@
+.admin {
+    margin: 0;
+    font-family: "Roboto", Arial, sans-serif;
+    display: flex;
+    background-color: #f5f7fa; // Fondo general claro para contraste elegante
+
+    .sidebar {
+        width: 260px;
+        height: 100vh;
+        background-color: #1d2b36; // Fondo más oscuro para un aspecto profesional
+        color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        padding: 25px 15px;
+        box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1); // Sombra para separar la barra del contenido principal
+
+        h2 {
+            text-align: center;
+            margin-bottom: 35px;
+            font-size: 22px;
+            font-weight: 700;
+            color: #e1e8ed; // Tono grisáceo para elegancia
+            letter-spacing: 1.5px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+
+            li {
+                padding: 15px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1); // Separadores más sutiles
+
+                a {
+                    color: #ffffff;
+                    text-decoration: none;
+                    font-size: 15px;
+                    font-weight: 500;
+                    display: flex;
+                    align-items: center; // Alineación perfecta para íconos
+                    transition: background-color 0.3s, transform 0.2s; // Transiciones para interacción
+
+                    &:hover {
+                        background-color: #273642; // Fondo sutilmente más claro
+                        border-radius: 6px;
+                        transform: scale(1.02); // Pequeño zoom para mejorar interacción
+                    }
+
+                    i { // Estilo para íconos (si se utilizan)
+                        margin-right: 10px;
+                        font-size: 18px;
+                        color: #cfd8dc; // Íconos más claros para contraste
+                    }
+                }
+            }
+        }
+    }
+
+    // Responsividad para la barra lateral
+@media screen and (max-width: 1200px) {
+    .sidebar {
+        width: 200px; // Reduce el ancho en pantallas medianas
+        ul li a {
+            font-size: 14px; // Disminuye el tamaño de la fuente
+        }
+        h2 {
+            font-size: 18px; // Reduce el tamaño del título
+        }
+    }
+
+    .content {
+        margin-left: 200px; // Ajusta el espacio del contenido principal
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .sidebar {
+        width: 180px; // Ajusta más el ancho en pantallas pequeñas
+        ul li a {
+            font-size: 13px; // Disminuye ligeramente la fuente
+        }
+        h2 {
+            font-size: 16px; // Ajusta el tamaño del título
+        }
+    }
+
+    .content {
+        margin-left: 180px; // Ajusta el contenido principal
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .sidebar {
+        width: 150px; // Ancho más reducido para dispositivos móviles
+        padding: 10px; // Reduce el padding interno
+        ul li a {
+            font-size: 12px; // Texto más compacto
+        }
+        h2 {
+            font-size: 14px; // Título más pequeño
+        }
+    }
+
+    .content {
+        margin-left: 150px; // Espacio reducido para el contenido principal
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .sidebar {
+        width: 120px; // Barra lateral más estrecha
+        ul li {
+            padding: 10px 5px; // Menos espacio entre elementos
+        }
+        ul li a {
+            font-size: 11px; // Texto aún más compacto
+        }
+        h2 {
+            font-size: 12px; // Tamaño de título compacto
+        }
+    }
+
+    .content {
+        margin-left: 120px; // Espacio ajustado para el contenido principal
+    }
+}
+
+}
