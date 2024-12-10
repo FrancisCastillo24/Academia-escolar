@@ -20,8 +20,11 @@ Route::get('/admin-dashboard', function () {
 
 require __DIR__ . '/auth.php';
 
-// Rutas para el controlador de cursos
-// Route::resource('course', CourseController::class);
+// Ruta de los controladores para el usuario estándar
+Route::resource('course', CourseController::class);
+
+
+// Ruta de los controladores para el administrador
 Route::prefix('admin') // Prefijo para todas las rutas del administrador
     ->name('admin.') // Prefijo de nombres de las rutas
     ->middleware(['auth', 'admin']) // Puedes agregar el middleware que necesites
