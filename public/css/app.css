@@ -140,4 +140,42 @@ header .header_logo {
   }
 }
 
+.admin main {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  background-color: #f8fafc;
+}
+.admin main .content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.admin main .content .form_course {
+  max-width: 400px;
+  width: 100%;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+@media (max-width: 768px) {
+  .admin main .content .form_course {
+    padding: 20px;
+    max-width: 90%;
+    border-radius: 6px;
+  }
+}
+@media (max-width: 480px) {
+  .admin main .content .form_course {
+    padding: 15px;
+    max-width: 95%;
+    box-shadow: none;
+  }
+}
+
 /*# sourceMappingURL=app.css.map */

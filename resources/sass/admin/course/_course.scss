@@ -1,0 +1,41 @@
+.admin {
+    main {
+        flex-grow: 1; // Ocupa el espacio restante
+        display: flex;
+        justify-content: center; // Centra el contenido horizontalmente
+        align-items: center; // Centra el contenido verticalmente
+        min-height: 100vh;
+        padding: 20px;
+        background-color: #f8fafc; // Fondo del main
+
+        .content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+
+            .form_course {
+                max-width: 400px;
+                width: 100%;
+                background-color: #ffffff;
+                padding: 30px;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+                // Adaptación para pantallas menores a 768px
+                @media (max-width: 768px) {
+                    padding: 20px; // Reducir padding en tabletas
+                    max-width: 90%; // Hacer el formulario más ancho en pantallas pequeñas
+                    border-radius: 6px; // Bordes ligeramente menos redondeados
+                }
+
+                // Adaptación para pantallas muy pequeñas (móviles)
+                @media (max-width: 480px) {
+                    padding: 15px; // Reducir aún más el padding
+                    max-width: 95%; // Usar casi todo el ancho
+                    box-shadow: none; // Eliminar la sombra para simplificar
+                }
+            }
+        }
+    }
+}
