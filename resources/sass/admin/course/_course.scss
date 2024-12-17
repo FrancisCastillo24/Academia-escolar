@@ -1,18 +1,20 @@
 .admin {
     main {
-        flex-grow: 1; // Ocupa el espacio restante
+        flex-grow: 1;
         display: flex;
         justify-content: center; // Centra el contenido horizontalmente
         align-items: center; // Centra el contenido verticalmente
         min-height: 100vh;
         padding: 20px;
-        background-color: #f8fafc; // Fondo del main
+        background-color: #f8fafc;
+        overflow-x: hidden; // Evita el desplazamiento horizontal
 
         .content {
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start; // Cambiar a 'flex-start' para que el contenido esté alineado al principio (arriba)
             width: 100%;
+            margin-top: 20px; // Agregar algo de espacio por encima si es necesario
 
             .form_course {
                 max-width: 500px;
@@ -21,19 +23,24 @@
                 padding: 30px;
                 border-radius: 8px;
                 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                margin: 0 auto; // Centra el formulario en pantallas grandes
 
                 // Adaptación para pantallas menores a 768px
                 @media (max-width: 768px) {
                     padding: 20px; // Reducir padding en tabletas
                     max-width: 90%; // Hacer el formulario más ancho en pantallas pequeñas
-                    border-radius: 6px; // Bordes ligeramente menos redondeados
+                    border-radius: 6px;
+                    margin-left: 0; // Eliminar margen izquierdo
+                    margin-right: 0; // Eliminar margen derecho
                 }
 
                 // Adaptación para pantallas muy pequeñas (móviles)
                 @media (max-width: 480px) {
                     padding: 15px; // Reducir aún más el padding
-                    max-width: 95%; // Usar casi todo el ancho
+                    max-width: 100%; // Usar todo el ancho
                     box-shadow: none; // Eliminar la sombra para simplificar
+                    margin-left: 0; // Eliminar margen a la izquierda
+                    margin-right: 3rem; // Eliminar margen a la derecha
                 }
             }
         }

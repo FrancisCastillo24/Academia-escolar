@@ -2,24 +2,24 @@
     margin: 0;
     font-family: "Roboto", Arial, sans-serif;
     display: flex;
-    background-color: #f5f7fa; // Fondo general claro para contraste elegante
+    background-color: #f5f7fa;
 
     .sidebar {
         width: 260px;
         height: 100vh;
-        background-color: #1d2b36; // Fondo más oscuro para un aspecto profesional
+        background-color: #1d2b36;
         color: #ffffff;
         display: flex;
         flex-direction: column;
         padding: 25px 15px;
-        box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1); // Sombra para separar la barra del contenido principal
+        box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
 
         h2 {
             text-align: center;
             margin-bottom: 35px;
             font-size: 22px;
             font-weight: 700;
-            color: #e1e8ed; // Tono grisáceo para elegancia
+            color: #e1e8ed;
             letter-spacing: 1.5px;
         }
 
@@ -30,7 +30,8 @@
 
             li {
                 padding: 15px;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1); // Separadores más sutiles
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                position: relative;
 
                 a {
                     color: #ffffff;
@@ -38,92 +39,104 @@
                     font-size: 15px;
                     font-weight: 500;
                     display: flex;
-                    align-items: center; // Alineación perfecta para íconos
-                    transition: background-color 0.3s, transform 0.2s; // Transiciones para interacción
+                    align-items: center;
+                    transition: background-color 0.3s, transform 0.2s;
 
                     &:hover {
-                        background-color: #273642; // Fondo sutilmente más claro
+                        background-color: #273642;
                         border-radius: 6px;
-                        transform: scale(1.02); // Pequeño zoom para mejorar interacción
+                        transform: scale(1.02);
                     }
 
-                    i { // Estilo para íconos (si se utilizan)
-                        margin-right: 10px;
-                        font-size: 18px;
-                        color: #cfd8dc; // Íconos más claros para contraste
+                    .arrow {
+                        margin-left: auto;
+                        border: solid #ffffff;
+                        border-width: 0 2px 2px 0;
+                        display: inline-block;
+                        padding: 3px;
+                        transform: rotate(45deg);
                     }
+                }
+
+                .dropdown-menu {
+                    display: none;
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    background-color: #273642;
+                    border-radius: 6px;
+                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                    z-index: 1000;
+
+                    li {
+                        border-bottom: none;
+                        padding: 10px 15px;
+
+                        a {
+                            font-size: 14px;
+                            transition: background-color 0.2s;
+
+                            &:hover {
+                                background-color: #1d2b36;
+                            }
+                        }
+                    }
+                }
+
+                &:hover .dropdown-menu {
+                    display: block;
                 }
             }
         }
-    }
-
-    // Responsividad para la barra lateral
-@media screen and (max-width: 1200px) {
-    .sidebar {
-        width: 200px; // Reduce el ancho en pantallas medianas
-        ul li a {
-            font-size: 14px; // Disminuye el tamaño de la fuente
-        }
-        h2 {
-            font-size: 18px; // Reduce el tamaño del título
-        }
-    }
-
-    .content {
-        margin-left: 200px; // Ajusta el espacio del contenido principal
-    }
-}
-
-@media screen and (max-width: 992px) {
-    .sidebar {
-        width: 180px; // Ajusta más el ancho en pantallas pequeñas
-        ul li a {
-            font-size: 13px; // Disminuye ligeramente la fuente
-        }
-        h2 {
-            font-size: 16px; // Ajusta el tamaño del título
-        }
-    }
-
-    .content {
-        margin-left: 180px; // Ajusta el contenido principal
     }
 }
 
 @media screen and (max-width: 768px) {
     .sidebar {
-        width: 150px; // Ancho más reducido para dispositivos móviles
-        padding: 10px; // Reduce el padding interno
-        ul li a {
-            font-size: 12px; // Texto más compacto
+        max-width: 200px;
+        width: 100px; // Menú lateral mucho más estrecho
+        padding: 8px; // Reduce el padding general
+
+        ul li {
+            padding: 8px 4px; // Espaciado más pequeño entre elementos
         }
+
+        ul li a {
+            font-size: 10px; // Texto aún más compacto
+        }
+
         h2 {
-            font-size: 14px; // Título más pequeño
+            font-size: 12px; // Tamaño del título reducido
         }
     }
 
     .content {
-        margin-left: 150px; // Espacio reducido para el contenido principal
+        margin-left: 100px; // Ajusta el contenido principal para que ocupe más espacio
+        padding: 15px; // Opcional: agrega padding para más separación en el contenido
     }
 }
 
 @media screen and (max-width: 576px) {
     .sidebar {
-        width: 120px; // Barra lateral más estrecha
+        width: 80px; // Más estrecho aún en pantallas muy pequeñas
+        padding: 6px; // Padding reducido al mínimo
+
         ul li {
-            padding: 10px 5px; // Menos espacio entre elementos
+            padding: 6px 3px;
         }
+
         ul li a {
-            font-size: 11px; // Texto aún más compacto
+            font-size: 9px; // Texto extremadamente compacto
         }
+
         h2 {
-            font-size: 12px; // Tamaño de título compacto
+            font-size: 10px;
         }
     }
 
     .content {
-        margin-left: 120px; // Espacio ajustado para el contenido principal
+        margin-left: 80px; // Más espacio para el contenido principal
+        padding: 10px; // Opcional
     }
 }
 
-}
