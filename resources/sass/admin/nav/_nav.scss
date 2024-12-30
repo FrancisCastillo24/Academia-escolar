@@ -3,140 +3,168 @@
     font-family: "Roboto", Arial, sans-serif;
     display: flex;
     background-color: #f5f7fa;
-
-    .sidebar {
-        width: 260px;
-        height: 100vh;
-        background-color: #1d2b36;
-        color: #ffffff;
-        display: flex;
-        flex-direction: column;
-        padding: 25px 15px;
-        box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
-
-        h2 {
-            text-align: center;
-            margin-bottom: 35px;
-            font-size: 22px;
-            font-weight: 700;
-            color: #e1e8ed;
-            letter-spacing: 1.5px;
-        }
-
-        ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-
-            li {
-                padding: 15px;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-                position: relative;
-
-                a {
-                    color: #ffffff;
-                    text-decoration: none;
-                    font-size: 15px;
-                    font-weight: 500;
-                    display: flex;
-                    align-items: center;
-                    transition: background-color 0.3s, transform 0.2s;
-
-                    &:hover {
-                        background-color: #273642;
-                        border-radius: 6px;
-                        transform: scale(1.02);
-                    }
-
-                    .arrow {
-                        margin-left: auto;
-                        border: solid #ffffff;
-                        border-width: 0 2px 2px 0;
-                        display: inline-block;
-                        padding: 3px;
-                        transform: rotate(45deg);
-                    }
-                }
-
-                .dropdown-menu {
-                    display: none;
-                    position: absolute;
-                    top: 100%;
-                    left: 0;
-                    background-color: #273642;
-                    border-radius: 6px;
-                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                    z-index: 1000;
-
-                    li {
-                        border-bottom: none;
-                        padding: 10px 15px;
-
-                        a {
-                            font-size: 14px;
-                            transition: background-color 0.2s;
-
-                            &:hover {
-                                background-color: #1d2b36;
-                            }
-                        }
-                    }
-                }
-
-                &:hover .dropdown-menu {
-                    display: block;
-                }
-            }
-        }
-    }
 }
 
+.sidebar {
+    width: 260px;
+    height: 100vh;
+    background-color: #1d2b36;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    padding: 25px 15px;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+    transition: width 0.3s ease;
+}
+
+.sidebar h2 {
+    text-align: center;
+    margin-bottom: 35px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #e1e8ed;
+    letter-spacing: 1.5px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    padding: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+}
+
+.sidebar ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.sidebar ul li a:hover {
+    background-color: #273642;
+    border-radius: 6px;
+    transform: scale(1.02);
+}
+
+.sidebar ul li a .arrow {
+    margin-left: auto;
+    border: solid #ffffff;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(45deg);
+}
+
+.sidebar ul li .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #273642;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.sidebar ul li .dropdown-menu li {
+    border-bottom: none;
+    padding: 10px 15px;
+}
+
+.sidebar ul li .dropdown-menu li a {
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.sidebar ul li .dropdown-menu li a:hover {
+    background-color: #1d2b36;
+}
+
+.sidebar ul li:hover .dropdown-menu {
+    display: block;
+}
+
+.content {
+    flex-grow: 1;
+    padding: 20px;
+    transition: margin-left 0.3s ease;
+}
+
+/* Botón "Salir" personalizado */
+.admin-logout {
+    background-color: #ff5f57; /* Color llamativo para diferenciar */
+    color: #ffffff;
+    border: none;
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%; /* Ocupa todo el ancho del panel */
+}
+
+/* Adaptación para pantallas medianas */
 @media screen and (max-width: 768px) {
+    .admin-logout {
+        font-size: 10px; /* Texto aún más compacto */
+        padding: 6px 8px; /* Menos espacio alrededor */
+    }
+    
     .sidebar {
-        max-width: 200px;
-        width: 100px; // Menú lateral mucho más estrecho
-        padding: 8px; // Reduce el padding general
+        width: 150px; /* Reduce el ancho del panel lateral */
+        padding: 10px;
+    }
 
-        ul li {
-            padding: 8px 4px; // Espaciado más pequeño entre elementos
-        }
+    .sidebar h2 {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
 
-        ul li a {
-            font-size: 10px; // Texto aún más compacto
-        }
+    .sidebar ul li {
+        padding: 10px;
+    }
 
-        h2 {
-            font-size: 12px; // Tamaño del título reducido
-        }
+    .sidebar ul li a {
+        font-size: 13px;
     }
 
     .content {
-        margin-left: 100px; // Ajusta el contenido principal para que ocupe más espacio
-        padding: 15px; // Opcional: agrega padding para más separación en el contenido
+        margin-left: 150px; /* Ajusta el espacio del contenido */
     }
 }
 
+/* Adaptación para pantallas pequeñas */
 @media screen and (max-width: 576px) {
     .sidebar {
-        width: 80px; // Más estrecho aún en pantallas muy pequeñas
-        padding: 6px; // Padding reducido al mínimo
+        width: 80px; /* Más pequeño en dispositivos móviles */
+        padding: 5px;
+    }
 
-        ul li {
-            padding: 6px 3px;
-        }
+    .sidebar h2 {
+        font-size: 12px;
+        margin-bottom: 10px;
+    }
 
-        ul li a {
-            font-size: 9px; // Texto extremadamente compacto
-        }
+    .sidebar ul li {
+        padding: 5px;
+    }
 
-        h2 {
-            font-size: 10px;
-        }
+    .sidebar ul li a {
+        font-size: 10px;
     }
 
     .content {
-        margin-left: 80px; // Más espacio para el contenido principal
-        padding: 10px; // Opcional
+        margin-left: 80px; /* Más espacio para el contenido principal */
+        padding: 10px;
     }
 }
-

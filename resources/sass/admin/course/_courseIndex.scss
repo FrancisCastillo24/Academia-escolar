@@ -1,0 +1,116 @@
+main {
+    .alert-success {
+      margin-bottom: 20px;
+      padding: 15px;
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+      border-radius: 5px;
+      font-family: Arial, sans-serif;
+    }
+  
+    .courses-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: auto;
+      font-family: Arial, sans-serif;
+  
+      .table-header {
+        background-color: #f4f4f4;
+        text-align: left;
+        border-bottom: 2px solid #ddd;
+      }
+  
+      .table-cell {
+        padding: 10px;
+        border: 1px solid #ddd;
+      }
+  
+      tbody {
+        .table-row {
+          border-bottom: 1px solid #ddd;
+  
+          .table-cell {
+            padding: 10px;
+            border: 1px solid #ddd;
+          }
+        }
+      }
+  
+      .actions {
+        text-align: center;
+  
+        button,
+        a {
+          background-color: transparent;
+          border: none;
+          padding: 8px;
+          cursor: pointer;
+          font-size: 18px;
+          display: inline-block;
+  
+          i {
+            margin-right: 5px;
+          }
+        }
+  
+        .delete-btn {
+          color: red;
+        }
+  
+        .edit-btn {
+          color: blue;
+        }
+      }
+  
+      .no-courses {
+        padding: 20px;
+        text-align: center;
+        border: 1px solid #ddd;
+      }
+    }
+  
+    // Adaptación para pantallas pequeñas
+    @media (max-width: 480px) {
+      .alert-success {
+        padding: 10px; // Reducir aún más el padding
+        max-width: 100%; // Usar todo el ancho disponible
+        box-shadow: none; // Eliminar la sombra
+      }
+  
+      .courses-table {
+        display: block;
+        width: 100%;
+        overflow-x: auto; // Permite desplazamiento horizontal
+        -webkit-overflow-scrolling: touch; // Mejora el desplazamiento en dispositivos móviles
+  
+        .table-header,
+        .table-row {
+          display: block;
+        }
+  
+        .table-cell {
+          display: block;
+          padding: 8px;
+          width: auto;
+          border: none;
+          border-bottom: 1px solid #ddd;
+        }
+  
+        tbody {
+          display: block;
+        }
+  
+        .actions {
+          text-align: left;
+  
+          button,
+          a {
+            padding: 5px; // Reducir el padding en móviles
+            font-size: 16px; // Reducir el tamaño de la fuente
+          }
+        }
+      }
+    }
+  }
+  

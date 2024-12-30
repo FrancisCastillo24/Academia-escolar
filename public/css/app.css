@@ -33,7 +33,8 @@ header .header_logo {
   display: flex;
   background-color: #f5f7fa;
 }
-.admin .sidebar {
+
+.sidebar {
   width: 260px;
   height: 100vh;
   background-color: #1d2b36;
@@ -42,8 +43,10 @@ header .header_logo {
   flex-direction: column;
   padding: 25px 15px;
   box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+  transition: width 0.3s ease;
 }
-.admin .sidebar h2 {
+
+.sidebar h2 {
   text-align: center;
   margin-bottom: 35px;
   font-size: 22px;
@@ -51,17 +54,20 @@ header .header_logo {
   color: #e1e8ed;
   letter-spacing: 1.5px;
 }
-.admin .sidebar ul {
+
+.sidebar ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-.admin .sidebar ul li {
+
+.sidebar ul li {
   padding: 15px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   position: relative;
 }
-.admin .sidebar ul li a {
+
+.sidebar ul li a {
   color: #ffffff;
   text-decoration: none;
   font-size: 15px;
@@ -70,12 +76,14 @@ header .header_logo {
   align-items: center;
   transition: background-color 0.3s, transform 0.2s;
 }
-.admin .sidebar ul li a:hover {
+
+.sidebar ul li a:hover {
   background-color: #273642;
   border-radius: 6px;
   transform: scale(1.02);
 }
-.admin .sidebar ul li a .arrow {
+
+.sidebar ul li a .arrow {
   margin-left: auto;
   border: solid #ffffff;
   border-width: 0 2px 2px 0;
@@ -83,7 +91,8 @@ header .header_logo {
   padding: 3px;
   transform: rotate(45deg);
 }
-.admin .sidebar ul li .dropdown-menu {
+
+.sidebar ul li .dropdown-menu {
   display: none;
   position: absolute;
   top: 100%;
@@ -93,57 +102,88 @@ header .header_logo {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   z-index: 1000;
 }
-.admin .sidebar ul li .dropdown-menu li {
+
+.sidebar ul li .dropdown-menu li {
   border-bottom: none;
   padding: 10px 15px;
 }
-.admin .sidebar ul li .dropdown-menu li a {
+
+.sidebar ul li .dropdown-menu li a {
   font-size: 14px;
   transition: background-color 0.2s;
 }
-.admin .sidebar ul li .dropdown-menu li a:hover {
+
+.sidebar ul li .dropdown-menu li a:hover {
   background-color: #1d2b36;
 }
-.admin .sidebar ul li:hover .dropdown-menu {
+
+.sidebar ul li:hover .dropdown-menu {
   display: block;
 }
 
+.content {
+  flex-grow: 1;
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+}
+
+/* Botón "Salir" personalizado */
+.admin-logout {
+  background-color: #ff5f57; /* Color llamativo para diferenciar */
+  color: #ffffff;
+  border: none;
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%; /* Ocupa todo el ancho del panel */
+}
+
+/* Adaptación para pantallas medianas */
 @media screen and (max-width: 768px) {
+  .admin-logout {
+    font-size: 10px; /* Texto aún más compacto */
+    padding: 6px 8px; /* Menos espacio alrededor */
+  }
   .sidebar {
-    max-width: 200px;
-    width: 100px;
-    padding: 8px;
+    width: 150px; /* Reduce el ancho del panel lateral */
+    padding: 10px;
+  }
+  .sidebar h2 {
+    font-size: 16px;
+    margin-bottom: 20px;
   }
   .sidebar ul li {
-    padding: 8px 4px;
+    padding: 10px;
   }
   .sidebar ul li a {
-    font-size: 10px;
+    font-size: 13px;
+  }
+  .content {
+    margin-left: 150px; /* Ajusta el espacio del contenido */
+  }
+}
+/* Adaptación para pantallas pequeñas */
+@media screen and (max-width: 576px) {
+  .sidebar {
+    width: 80px; /* Más pequeño en dispositivos móviles */
+    padding: 5px;
   }
   .sidebar h2 {
     font-size: 12px;
-  }
-  .content {
-    margin-left: 100px;
-    padding: 15px;
-  }
-}
-@media screen and (max-width: 576px) {
-  .sidebar {
-    width: 80px;
-    padding: 6px;
+    margin-bottom: 10px;
   }
   .sidebar ul li {
-    padding: 6px 3px;
+    padding: 5px;
   }
   .sidebar ul li a {
-    font-size: 9px;
-  }
-  .sidebar h2 {
     font-size: 10px;
   }
   .content {
-    margin-left: 80px;
+    margin-left: 80px; /* Más espacio para el contenido principal */
     padding: 10px;
   }
 }
@@ -185,10 +225,104 @@ header .header_logo {
 @media (max-width: 480px) {
   .admin main .content .form_course {
     padding: 15px;
+    max-width: 130%;
+    box-shadow: none;
+    margin-left: -5rem;
+    margin-right: 0;
+  }
+}
+
+main .alert-success {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+  border-radius: 5px;
+  font-family: Arial, sans-serif;
+}
+main .courses-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: auto;
+  font-family: Arial, sans-serif;
+}
+main .courses-table .table-header {
+  background-color: #f4f4f4;
+  text-align: left;
+  border-bottom: 2px solid #ddd;
+}
+main .courses-table .table-cell {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+main .courses-table tbody .table-row {
+  border-bottom: 1px solid #ddd;
+}
+main .courses-table tbody .table-row .table-cell {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+main .courses-table .actions {
+  text-align: center;
+}
+main .courses-table .actions button,
+main .courses-table .actions a {
+  background-color: transparent;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  display: inline-block;
+}
+main .courses-table .actions button i,
+main .courses-table .actions a i {
+  margin-right: 5px;
+}
+main .courses-table .actions .delete-btn {
+  color: red;
+}
+main .courses-table .actions .edit-btn {
+  color: blue;
+}
+main .courses-table .no-courses {
+  padding: 20px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+@media (max-width: 480px) {
+  main .alert-success {
+    padding: 10px;
     max-width: 100%;
     box-shadow: none;
-    margin-left: 0;
-    margin-right: 3rem;
+  }
+  main .courses-table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  main .courses-table .table-header,
+  main .courses-table .table-row {
+    display: block;
+  }
+  main .courses-table .table-cell {
+    display: block;
+    padding: 8px;
+    width: auto;
+    border: none;
+    border-bottom: 1px solid #ddd;
+  }
+  main .courses-table tbody {
+    display: block;
+  }
+  main .courses-table .actions {
+    text-align: left;
+  }
+  main .courses-table .actions button,
+  main .courses-table .actions a {
+    padding: 5px;
+    font-size: 16px;
   }
 }
 

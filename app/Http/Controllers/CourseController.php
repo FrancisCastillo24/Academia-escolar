@@ -15,14 +15,13 @@ class CourseController extends Controller
     {
         // Almaceno en una variable los cursos y lo muestro en la ruta dependiendo el rol
         $user = Auth::user();
-        $courses = Course::all();
+        $courses = Course::all(); // Cambia el número de elementos por página según sea necesario
 
-        if ($user && $user->isAdmin()) {
-            return view('admin.course.index', ["courses" => $courses]);
-        }
+        // Verifico el rol del usuario y redirijo a la vista correspondiente
+        $view = $user && $user->isAdmin() ? 'admin.course.index' : 'user.course.index';
 
         // $view = $user->isAdmin() ? 'admin.course.index' : 'user.course.index';
-        return view('user.course.index', ["courses" => $courses]);
+        return view($view, ["courses" => $courses]);
     }
 
     /**
@@ -30,7 +29,7 @@ class CourseController extends Controller
      */
     public function create()
     {
-        //
+        return view("admin.course.create");
     }
 
     /**
@@ -70,7 +69,11 @@ class CourseController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        // Recibo el ID del curso que queremos editar
+        $course = Course::findOrFail($id);
+
+        // Mandamos a la vista el curso seleccionado
+        return view("admin.course.edit", ["course" => $course]);
     }
 
     /**
@@ -78,7 +81,35 @@ class CourseController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // Actualizamos los campos de la tabla
+        $campos = [
+            'name' => 'required',
+            'description' => 'required|min:10',
+            'start_date' => 'required',
+            'start_end' => 'required'
+        ];
+
+        $mensaje = [
+            'required' => 'El campo :attribute está vacio'
+        ];
+
+        $request->validate($campos, $mensaje);
+
+        // Obtengo el curso de la base de datos
+        $course = Course::findOrFail($id);
+
+        // Actualizamos los campos de la base de datos
+        $data = [
+            'name' => $request->name,
+            'description' => $request->description,
+            'start_date' => $request->start_date,
+            'start_end' => $request->start_end
+        ];
+
+        $course->update($data);
+
+        // Redireccionamos con un mensaje de éxito
+        return redirect()->route('course.index')->with('success', 'Curso actualizado con éxito');
     }
 
     /**
@@ -86,6 +117,9 @@ class CourseController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // Recojo el id del curso
+        $curso = Course::findOrFail($id);
+        $curso->delete();
+        return redirect()->route('course.index')->with('danger', 'Curso eliminado con éxito');
     }
 }
