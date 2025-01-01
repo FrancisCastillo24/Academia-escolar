@@ -17,19 +17,19 @@
             <!-- Campo Descripción -->
             <div class="mb-4">
                 <label for="course_description" class="form-label">Descripción del curso</label>
-                <input type="text" name="description" id="description" class="form-control" value="{{ old('name', $course->description) }}">
+                <input type="text" name="description" id="description" class="form-control" value="{{ old('course_description', $course->description) }}">
             </div>
 
             <!-- Campo Fecha de inicio -->
             <div class="mb-4">
                 <label for="start_date" class="form-label">Fecha de inicio</label>
-                <input type="date" name="start_date" id="start_date" class="form-control" value="{{ old('name', $course->start_date) }}">
+                <input type="date" name="start_date" id="start_date" class="form-control" value="{{ old('start_date', $course->start_date) }}">
             </div>
 
             <!-- Campo Fecha de fin -->
             <div class="mb-4">
                 <label for="start_end" class="form-label">Fecha de fin</label>
-                <input type="date" name="start_end" id="start_end" class="form-control" value="{{ old('name', $course->start_end) }}">
+                <input type="date" name="start_end" id="start_end" class="form-control" value="{{ old('start_end', $course->start_end) }}">
             </div>
 
             <!-- Botón de enviar -->

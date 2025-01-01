@@ -8,10 +8,19 @@
                 </a>
                 <ul class="dropdown-menu" id="dropdownMenu">
                     <li><a href="{{ route('admin.courses.create') }}">Crear</a></li>
-                    <li><a href="{{ route('admin.courses.index') }}">Modificar</a></li>
+                    <li><a href="{{ route('admin.courses.index') }}">Listado</a></li>
                 </ul>
             </li>
-            <li><a href="#">Alumnos</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" id="dropdownToggle">
+                    Alumnos
+                </a>
+                <ul class="dropdown-menu" id="dropdownMenu">
+                    <li><a href="{{ route('admin.student.create') }}">Crear</a></li>
+                    <li><a href="{{ route('admin.student.index') }}">Listado</a></li>
+                </ul>
+            </li>
+            </li>
             <li><a href="#">Talleres</a></li>
             <li><a href="#">Reseñas</a></li>
             <li>
@@ -28,11 +37,11 @@
     </div>
 </div>
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function() {
         const toggleButton = document.getElementById("toggleButton");
         const sidebar = document.getElementById("sidebar");
 
-        toggleButton.addEventListener("click", function () {
+        toggleButton.addEventListener("click", function() {
             sidebar.classList.toggle("active");
         });
     });
