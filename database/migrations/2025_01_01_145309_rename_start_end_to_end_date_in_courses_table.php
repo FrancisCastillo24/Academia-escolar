@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('courses', function (Blueprint $table) {
-            // Eliminamos el campo duración
-            $table->dropColumn('duration');
+            //
+            $table->renameColumn('start_end', 'end_date');
         });
     }
 
@@ -23,8 +23,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('courses', function (Blueprint $table) {
-            // Revertimos los cambios en caso de error en la base de datos
-            $table->integer('duration')->nullable();
+            //
+            $table->renameColumn('end_date', 'start_end');
         });
     }
 };

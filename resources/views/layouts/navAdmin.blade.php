@@ -1,5 +1,5 @@
 <div class="admin">
-    <div class="sidebar">
+    <div class="sidebar" id="sidebar">
         <h2>Admin Panel</h2>
         <ul>
             <li class="dropdown">
@@ -22,4 +22,18 @@
             </li>
         </ul>
     </div>
+    <!-- Contenido principal -->
+    <div class="content">
+        <button class="toggle-button" id="toggleButton">&#9776;</button>
+    </div>
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const toggleButton = document.getElementById("toggleButton");
+        const sidebar = document.getElementById("sidebar");
+
+        toggleButton.addEventListener("click", function () {
+            sidebar.classList.toggle("active");
+        });
+    });
+</script>

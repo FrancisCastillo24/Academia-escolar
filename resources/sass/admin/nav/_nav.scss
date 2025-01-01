@@ -5,6 +5,23 @@
     background-color: #f5f7fa;
 }
 
+/* Botón de toggle */
+.toggle-button {
+    background-color: #1d2b36;
+    color: #ffffff;
+    border: none;
+    padding: 10px 15px;
+    font-size: 18px;
+    cursor: pointer;
+    display: none;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1001;
+    border-radius: 4px;
+}
+
+/* Barra lateral (sidebar) */
 .sidebar {
     width: 260px;
     height: 100vh;
@@ -90,6 +107,16 @@
 
 .sidebar ul li:hover .dropdown-menu {
     display: block;
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: fadeInDropdown 0.3s forwards ease;
+}
+
+@keyframes fadeInDropdown {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .content {
@@ -100,7 +127,7 @@
 
 /* Botón "Salir" personalizado */
 .admin-logout {
-    background-color: #ff5f57; /* Color llamativo para diferenciar */
+    background-color: #ff5f57; /* Color llamativo */
     color: #ffffff;
     border: none;
     padding: 10px 15px;
@@ -110,18 +137,29 @@
     text-align: center;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    width: 100%; /* Ocupa todo el ancho del panel */
+    width: 100%;
+}
+
+.admin-logout:hover {
+    background-color: #e64e4a;
+}
+
+/* Accesibilidad: enfoque en enlaces y botones */
+.sidebar ul li a:focus,
+.admin-logout:focus {
+    outline: 2px dashed #ffffff;
+    outline-offset: 4px;
 }
 
 /* Adaptación para pantallas medianas */
 @media screen and (max-width: 768px) {
     .admin-logout {
-        font-size: 10px; /* Texto aún más compacto */
-        padding: 6px 8px; /* Menos espacio alrededor */
+        font-size: 10px;
+        padding: 6px 8px;
     }
     
     .sidebar {
-        width: 150px; /* Reduce el ancho del panel lateral */
+        width: 150px;
         padding: 10px;
     }
 
@@ -139,32 +177,46 @@
     }
 
     .content {
-        margin-left: 150px; /* Ajusta el espacio del contenido */
+        margin-left: 150px;
     }
 }
 
 /* Adaptación para pantallas pequeñas */
 @media screen and (max-width: 576px) {
     .sidebar {
-        width: 80px; /* Más pequeño en dispositivos móviles */
-        padding: 5px;
+        position: fixed;
+        top: 0;
+        left: -260px; /* Ocultar la barra lateral */
+        height: 100vh;
+        transition: left 0.3s ease;
+        z-index: 1000;
     }
 
-    .sidebar h2 {
-        font-size: 12px;
-        margin-bottom: 10px;
+    .sidebar.active {
+        left: 0; /* Mostrar la barra lateral cuando esté activa */
     }
 
-    .sidebar ul li {
-        padding: 5px;
-    }
-
-    .sidebar ul li a {
-        font-size: 10px;
+    .toggle-button {
+        display: block; /* Mostrar el botón de toggle */
     }
 
     .content {
-        margin-left: 80px; /* Más espacio para el contenido principal */
-        padding: 10px;
+        margin-left: 0; /* Asegurar que el contenido no se desplace */
+    }
+}
+
+/* Modo oscuro automático */
+@media (prefers-color-scheme: dark) {
+    .sidebar {
+        background-color: #111111;
+        color: #cccccc;
+    }
+
+    .sidebar ul li a:hover {
+        background-color: #222222;
+    }
+
+    .admin-logout {
+        background-color: #e63946;
     }
 }

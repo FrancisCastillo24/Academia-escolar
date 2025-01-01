@@ -1,5 +1,5 @@
 main {
-    .alert-success {
+  .alert-success {
       margin-bottom: 20px;
       padding: 15px;
       background-color: #d4edda;
@@ -7,110 +7,112 @@ main {
       border: 1px solid #c3e6cb;
       border-radius: 5px;
       font-family: Arial, sans-serif;
-    }
-  
-    .courses-table {
+  }
+
+  .table-container {
+      width: 100%;
+      max-width: 100%; /* Asegura que la tabla ocupe todo el espacio disponible */
+      margin: 0 auto; /* Centra el contenedor */
+      overflow-x: auto; /* Permite desplazamiento horizontal solo si es necesario */
+      padding: 0 15px; /* Agrega un poco de espacio lateral */
+  }
+
+  .courses-table {
       width: 100%;
       border-collapse: collapse;
-      margin: auto;
       font-family: Arial, sans-serif;
-  
+
       .table-header {
-        background-color: #f4f4f4;
-        text-align: left;
-        border-bottom: 2px solid #ddd;
-      }
-  
-      .table-cell {
-        padding: 10px;
-        border: 1px solid #ddd;
-      }
-  
-      tbody {
-        .table-row {
-          border-bottom: 1px solid #ddd;
-  
-          .table-cell {
-            padding: 10px;
-            border: 1px solid #ddd;
-          }
-        }
-      }
-  
-      .actions {
-        text-align: center;
-  
-        button,
-        a {
-          background-color: transparent;
-          border: none;
-          padding: 8px;
-          cursor: pointer;
-          font-size: 18px;
-          display: inline-block;
-  
-          i {
-            margin-right: 5px;
-          }
-        }
-  
-        .delete-btn {
-          color: red;
-        }
-  
-        .edit-btn {
-          color: blue;
-        }
-      }
-  
-      .no-courses {
-        padding: 20px;
-        text-align: center;
-        border: 1px solid #ddd;
-      }
-    }
-  
-    // Adaptación para pantallas pequeñas
-    @media (max-width: 480px) {
-      .alert-success {
-        padding: 10px; // Reducir aún más el padding
-        max-width: 100%; // Usar todo el ancho disponible
-        box-shadow: none; // Eliminar la sombra
-      }
-  
-      .courses-table {
-        display: block;
-        width: 100%;
-        overflow-x: auto; // Permite desplazamiento horizontal
-        -webkit-overflow-scrolling: touch; // Mejora el desplazamiento en dispositivos móviles
-  
-        .table-header,
-        .table-row {
-          display: block;
-        }
-  
-        .table-cell {
-          display: block;
-          padding: 8px;
-          width: auto;
-          border: none;
-          border-bottom: 1px solid #ddd;
-        }
-  
-        tbody {
-          display: block;
-        }
-  
-        .actions {
+          background-color: #f4f4f4;
           text-align: left;
-  
-          button,
-          a {
-            padding: 5px; // Reducir el padding en móviles
-            font-size: 16px; // Reducir el tamaño de la fuente
-          }
-        }
+          border-bottom: 2px solid #ddd;
       }
-    }
+
+      .table-cell {
+          padding: 10px;
+          border: 1px solid #ddd;
+      }
+
+      tbody {
+          .table-row {
+              border-bottom: 1px solid #ddd;
+
+              .table-cell {
+                  padding: 10px;
+                  border: 1px solid #ddd;
+              }
+          }
+      }
+
+      .actions {
+          text-align: center;
+
+          a {
+              text-decoration: none;
+              padding: 8px 12px;
+              border-radius: 4px;
+              font-size: 14px;
+              cursor: pointer;
+              margin-right: 5px;
+              transition: background-color 0.3s ease; /* Suaviza el cambio de fondo */
+          }
+
+          .edit-btn {
+              color: white;
+              background-color: blue;
+          }
+
+          .delete-btn {
+              color: white;
+              background-color: red;
+          }
+
+          .edit-btn:hover,
+          .delete-btn:hover {
+              background-color: #555; /* Cambio de color al pasar el ratón */
+          }
+      }
   }
-  
+
+  /* Adaptación para pantallas pequeñas */
+  @media (max-width: 480px) {
+      .alert-success {
+          padding: 10px;
+          max-width: 100%;
+      }
+
+      .table-container {
+          padding: 0 10px; /* Asegura espacio lateral */
+      }
+
+      .courses-table {
+          display: block;
+          width: 100%;
+          border: 1px solid #ddd;
+          border-radius: 5px;
+
+          .table-header,
+          .table-row {
+              display: flex;
+              flex-wrap: wrap; /* Ajusta columnas automáticamente */
+          }
+
+          .table-cell {
+              width: 100%;
+              padding: 8px;
+              border-bottom: 1px solid #ddd;
+          }
+
+          .actions {
+              display: flex;
+              justify-content: flex-start;
+              gap: 8px;
+
+              a {
+                  padding: 5px;
+                  font-size: 14px;
+              }
+          }
+      }
+  }
+}

@@ -42,7 +42,7 @@ class CourseController extends Controller
             'name' => 'required',
             'description' => 'required',
             'start_date' => 'required|date',
-            'start_end' => 'required|date|after:start_date',
+            'end_date' => 'required|date|after:start_date',
         ]);
 
         // Creamos los cursos
@@ -50,7 +50,7 @@ class CourseController extends Controller
             'name' => $request->name,
             'description' => $request->description,
             'start_date' => $request->start_date,
-            'start_end' => $request->start_end
+            'end_date' => $request->end_date
         ]);
 
         return redirect()->route("course.index")->with("success", "Curso almacenado en la base de datos");
@@ -86,7 +86,7 @@ class CourseController extends Controller
             'name' => 'required',
             'description' => 'required|min:10',
             'start_date' => 'required',
-            'start_end' => 'required'
+            'end_date' => 'required'
         ];
 
         $mensaje = [
@@ -103,7 +103,7 @@ class CourseController extends Controller
             'name' => $request->name,
             'description' => $request->description,
             'start_date' => $request->start_date,
-            'start_end' => $request->start_end
+            'end_date' => $request->end_date
         ];
 
         $course->update($data);

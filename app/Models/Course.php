@@ -13,6 +13,6 @@ class Course extends Model
         'name',
         'description',
         'start_date',
-        'start_end'
+        'end_date'
     ];
 }
