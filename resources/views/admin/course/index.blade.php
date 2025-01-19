@@ -38,18 +38,21 @@
                 <td class="text-center" data-label="Fecha de Inicio">{{ $course->start_date }}</td>
                 <td class="text-center" data-label="Fecha de Finalización">{{ $course->end_date }}</td>
                 <td class="text-center" data-label="Acciones">
-                    <a href="{{ route('admin.courses.edit', $course->id) }}" class="btn btn-warning btn-sm">
-                        Editar
-                    </a>
+                    <div class="d-flex justify-content-center gap-2">
+                        <a href="{{ route('admin.courses.edit', $course->id) }}" class="btn btn-warning btn-sm">
+                            Editar
+                        </a>
 
-                    <form method="POST" action="{{ route('admin.courses.destroy', $course->id) }}" style="display:inline;" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este curso?');">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-sm">
-                            Eliminar
-                        </button>
-                    </form>
+                        <form method="POST" action="{{ route('admin.courses.destroy', $course->id) }}" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este curso?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">
+                                Eliminar
+                            </button>
+                        </form>
+                    </div>
                 </td>
+
             </tr>
             @empty
             <tr>
