@@ -1,48 +1,40 @@
-.admin {
-    main {
-        flex-grow: 1;
-        display: flex;
-        justify-content: center; // Centra el contenido horizontalmente
-        align-items: center; // Centra el contenido verticalmente
-        min-height: 100vh;
-        padding: 20px;
-        background-color: #f8fafc;
-        overflow-x: hidden; // Evita el desplazamiento horizontal
+@media (max-width: 768px) {
+    table {
+        width: 100%;
+        display: block;
+        overflow-x: auto; /* Habilita el desplazamiento horizontal */
+        -webkit-overflow-scrolling: touch; /* Mejora el desplazamiento en dispositivos móviles */
+    }
 
-        .content {
-            display: flex;
-            justify-content: center;
-            align-items: flex-start; // Cambiar a 'flex-start' para que el contenido esté alineado al principio (arriba)
-            width: 100%;
-            margin-top: 20px; // Agregar algo de espacio por encima si es necesario
+    thead {
+        display: none; /* Esconde el encabezado en la versión móvil */
+    }
 
-            .form_course {
-                max-width: 500px;
-                width: 100%;
-                background-color: #ffffff;
-                padding: 30px;
-                border-radius: 8px;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                margin: 0 auto; // Centra el formulario en pantallas grandes
+    tr {
+        display: block;
+        margin-bottom: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+    }
 
-                // Adaptación para pantallas menores a 768px
-                @media (max-width: 768px) {
-                    padding: 20px; // Reducir padding en tabletas
-                    max-width: 90%; // Hacer el formulario más ancho en pantallas pequeñas
-                    border-radius: 6px;
-                    margin-left: 0; // Eliminar margen izquierdo
-                    margin-right: 0; // Eliminar margen derecho
-                }
+    td {
+        display: block;
+        text-align: left;
+        padding: 0.5rem;
+        border-bottom: 1px solid #ddd;
+        position: relative;
+        
+        &:last-child {
+            border-bottom: none;
+        }
 
-                // Adaptación para pantallas muy pequeñas (móviles)
-                @media (max-width: 480px) {
-                    padding: 15px; // Reducir aún más el padding
-                    max-width: 130%; // Usar todo el ancho
-                    box-shadow: none; // Eliminar la sombra para simplificar
-                    margin-left: -5rem; // Eliminar margen a la izquierda
-                    margin-right: 0; // Eliminar margen a la derecha
-                }
-            }
+        &:before {
+            content: attr(data-label);
+            font-weight: bold;
+            color: #6c757d;
+            margin-right: 1rem;
+            display: inline-block;
         }
     }
 }

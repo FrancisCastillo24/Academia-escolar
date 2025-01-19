@@ -15,30 +15,28 @@
 
 
 <!-- Tabla de cursos -->
-<table class="container table table-striped">
-    <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Descripción</th>
-            <th>Fecha de Inicio</th>
-            <th>Fecha de Finalización</th>
-        </tr>
-    </thead>
-    <tbody>
-        @forelse ($courses as $course)
-        <tr>
-            <td>{{ $course->name }}</td>
-            <td>{{ $course->description }}</td>
-            <td>{{ $course->start_date }}</td>
-            <td>{{ $course->start_end }}</td>
-        </tr>
-        @empty
-        <tr>
-            <td colspan="4" class="text-center">No hay cursos disponibles</td>
-        </tr>
-        @endforelse
-    </tbody>
-</table>
+<div class="container d-flex justify-content-center">
+    <table class="table table-striped w-75 text-center">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            @forelse ($courses as $course)
+            <tr>
+                <td>{{ $course->name }}</td>
+                <td>{{ $course->description }}</td>
+            </tr>
+            @empty
+            <tr>
+                <td colspan="2" class="text-center">No hay cursos disponibles</td>
+            </tr>
+            @endforelse
+        </tbody>
+    </table>
+</div>
 
 <!-- Sección con iconos y descripción de los cursos -->
 <section class="container mt-5">

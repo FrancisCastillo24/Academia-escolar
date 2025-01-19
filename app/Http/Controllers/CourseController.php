@@ -53,7 +53,7 @@ class CourseController extends Controller
             'end_date' => $request->end_date
         ]);
 
-        return redirect()->route("course.index")->with("success", "Curso almacenado en la base de datos");
+        return redirect()->route("course.index")->with("success", "Curso creado con éxito");
     }
 
     /**

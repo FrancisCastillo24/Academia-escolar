@@ -15,7 +15,7 @@ class StudentController extends Controller
     {
         // ¿Usuario o administrador?
         $user = Auth::user();
-        $students = Student::all();
+        $students = Student::paginate(5);
 
         $view = $user && $user->isAdmin() ? 'admin.student.index' : 'user.student.index';
         return view($view, ['students' => $students]);
@@ -43,7 +43,7 @@ class StudentController extends Controller
             'date_of_birth' => 'required|date|after:start_date',
         ]);
 
-        // Creamos los cursos
+        // Creamos los estudiantes
         Student::create([
             'name' => $request->name,
             'surname' => $request->surname,
@@ -51,7 +51,7 @@ class StudentController extends Controller
             'date_of_birth' => $request->date_of_birth
         ]);
 
-        return redirect()->route("student.index")->with("success", "Curso almacenado en la base de datos");
+        return redirect()->route("student.index")->with("success", "Alumno registrado en la base de datos");
     }
 
     /**
@@ -103,7 +103,7 @@ class StudentController extends Controller
 
         $student->update($data);
         // Redireccionamos con un mensaje de éxito
-        return redirect()->route('student.index')->with('success', 'Curso actualizado con éxito');
+        return redirect()->route('student.index')->with('success', 'Alumno actualizado con éxito');
     }
 
     /**
@@ -114,6 +114,6 @@ class StudentController extends Controller
         // Recojo el id del curso
         $student = Student::findOrFail($id);
         $student->delete();
-        return redirect()->route('student.index')->with('danger', 'Curso eliminado con éxito');
+        return redirect()->route('student.index')->with('danger', 'Alumno eliminado con éxito');
     }
 }

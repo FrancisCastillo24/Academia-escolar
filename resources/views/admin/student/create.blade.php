@@ -2,40 +2,37 @@
 @section('title', 'Alumnos')
 
 @section("content")
-<div class="content">
-    <div class="form_course">
-        <form action="{{ route('student.store') }}" method="post" class="formulario_curso">
-            @csrf <!-- Token de seguridad en Laravel -->
-
-            <!-- Campo Nombre -->
-            <div class="mb-4">
-                <label for="name" class="form-label">Nombre del alumno</label>
-                <input type="text" name="name" id="name" class="form-control" required>
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+        <div class="card shadow-lg" style="width: 100%; max-width: 500px;">
+            <div class="card-header text-center bg-primary text-white">
+                <h4>Formulario de Inscripción</h4>
             </div>
+            <div class="card-body">
+                <form method="POST" action="{{ route('student.store') }}">
+                @csrf
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nombre Completo</label>
+                        <input type="text" class="form-control" name="name" id="name" placeholder="Nombre del nuevo alumno" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="surname" class="form-label">Apellidos</label>
+                        <input type="text" class="form-control" name="surname" id="surname" placeholder="Apellidos del nuevo alumno" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Dirección</label>
+                        <input type="text" class="form-control" name="address" id="address" placeholder="Dirección del nuevo alumno" required>
+                    </div>
 
-            <!-- Campo Apellidos -->
-            <div class="mb-4">
-                <label for="surname" class="form-label">Apellidos del alumno</label>
-                <input type="text" name="surname" id="surname" class="form-control">
+                    <div class="mb-3">
+                        <label for="date_of_birth" class="form-label">Fecha de Nacimiento</label>
+                        <input type="date" class="form-control" name="date_of_birth" id="date_of_birth" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Registrar</button>
+                    <a href="{{ route('student.index') }}" class="btn btn-secondary px-4 py-2 mt-3 w-100">Volver</a>
+                </form>
             </div>
-
-            <!-- Campo Dirección -->
-            <div class="mb-4">
-                <label for="address" class="form-label">Dirección del alumno</label>
-                <input type="text" name="address" id="address" class="form-control" required>
-            </div>
-
-            <!-- Campo Fecha Nacimiento -->
-            <div class="mb-4">
-                <label for="date_of_birth" class="form-label">Fecha del nacimiento de alumno</label>
-                <input type="date" name="date_of_birth" id="date_of_birth" class="form-control" required>
-            </div>
-
-            <!-- Botón de enviar -->
-            <div class="text-center">
-                <button type="submit" class="btn btn-primary px-4 py-2">Inscribir alumno</button>
-            </div>
-        </form>
+        </div>
     </div>
-</div>
 @endsection
+
+
