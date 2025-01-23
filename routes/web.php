@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\WorkshopController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,7 @@ require __DIR__ . '/auth.php';
 // Ruta de los controladores para el usuario estándar
 Route::resource('course', CourseController::class);
 Route::resource('student', StudentController::class);
+Route::resource('workshop', WorkshopController::class);
 
 
 // Ruta de los controladores para el administrador
@@ -33,4 +35,5 @@ Route::prefix('admin') // Prefijo para todas las rutas del administrador
     ->group(function () {
         Route::resource('courses', CourseController::class); // Esto automáticamente creará las rutas para index, create, store, etc.
         Route::resource('student', StudentController::class); // Esto automáticamente creará las rutas para index, create, store, etc.
+        Route::resource('workshop', WorkshopController::class); // Esto automáticamente creará las rutas para index, create, store, etc.
     });
