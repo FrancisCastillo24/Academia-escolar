@@ -2,12 +2,6 @@
 @section('title', 'Cursos')
 
 @section("content")
-@if (session('success'))
-<div id="success-message" style="color: green; border: 1px solid green; padding: 10px; margin-bottom: 15px; text-align: center">
-    {{ session('success') }}
-</div>
-@endif
-
 <!-- Información sobre la tabla -->
 <br><div class="container alert-info" style="border: 1px solid #d1ecf1; background-color: #d1ecf1; color: #0c5460; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
     <strong>Información:</strong> A continuación, podrás ver una tabla con los cursos disponibles. Cada curso incluye información sobre su nombre, descripción, fecha de inicio y fecha de finalización.

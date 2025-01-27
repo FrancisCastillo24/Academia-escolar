@@ -1,0 +1,40 @@
+@media (max-width: 768px) {
+    table {
+        width: 100%;
+        display: block;
+        overflow-x: auto; /* Habilita el desplazamiento horizontal */
+        -webkit-overflow-scrolling: touch; /* Mejora el desplazamiento en dispositivos móviles */
+    }
+
+    thead {
+        display: none; /* Esconde el encabezado en la versión móvil */
+    }
+
+    tr {
+        display: block;
+        margin-bottom: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    td {
+        display: block;
+        text-align: left;
+        padding: 0.5rem;
+        border-bottom: 1px solid #ddd;
+        position: relative;
+        
+        &:last-child {
+            border-bottom: none;
+        }
+
+        &:before {
+            content: attr(data-label);
+            font-weight: bold;
+            color: #6c757d;
+            margin-right: 1rem;
+            display: inline-block;
+        }
+    }
+}

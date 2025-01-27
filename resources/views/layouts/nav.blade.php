@@ -16,7 +16,7 @@
           <a class="nav-link" href="#">Contacto</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Talleres</a>
+          <a class="nav-link" href="{{ route('workshop.index') }}">Talleres</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Reseñas</a>

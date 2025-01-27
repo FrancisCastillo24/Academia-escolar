@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\workshop;
 
 class WorkshopController extends Controller
 {
@@ -11,7 +12,9 @@ class WorkshopController extends Controller
      */
     public function index()
     {
-        //
+        // Muestro el listado en el index
+        $talleres = Workshop::all();
+        return view("user.workshop.index", ["workshops" => $talleres]);
     }
 
     /**
