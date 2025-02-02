@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->integer('age');
+            $table->integer('phone');
+            $table->integer('amount'); // Cantidad
+            // Workshop_id de la tabla bookings hace referencia al id de la tabla workshop para hacer la relación
+            $table->foreignId('workshop_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
