@@ -31,9 +31,9 @@ Route::resource('workshop', WorkshopController::class);
 // Ruta de los controladores para el administrador
 Route::prefix('admin') // Prefijo para todas las rutas del administrador
     ->name('admin.') // Prefijo de nombres de las rutas
-    ->middleware(['auth', 'admin']) // Puedes agregar el middleware que necesites
+    ->middleware(['auth', 'admin']) // Agregar middleware de autenticación y rol de administrador
     ->group(function () {
-        Route::resource('courses', CourseController::class); // Esto automáticamente creará las rutas para index, create, store, etc.
-        Route::resource('student', StudentController::class); // Esto automáticamente creará las rutas para index, create, store, etc.
-        Route::resource('workshop', WorkshopController::class); // Esto automáticamente creará las rutas para index, create, store, etc.
+        Route::resource('courses', CourseController::class); // Rutas para los cursos del administrador
+        Route::resource('student', StudentController::class); // Rutas para los estudiantes del administrador
+        Route::resource('workshop', WorkshopController::class); // Rutas para los talleres del administrador
     });

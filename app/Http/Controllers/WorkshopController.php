@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\workshop;
+use App\Models\Workshop;
+use Illuminate\Support\Facades\Auth;
 
 class WorkshopController extends Controller
 {
@@ -13,8 +14,13 @@ class WorkshopController extends Controller
     public function index()
     {
         // Muestro el listado en el index
-        $talleres = Workshop::all();
-        return view("user.workshop.index", ["workshops" => $talleres]);
+        $user = Auth::user();
+        $workshops = Workshop::all();
+
+        // dd($talleres); // <-- Agrega esto para depurar y ver si hay datos
+
+        $view = $user && $user->isAdmin() ? 'admin.workshop.index' : 'user.workshop.index';
+        return view($view, ["workshops" => $workshops]);
     }
 
     /**
@@ -22,7 +28,8 @@ class WorkshopController extends Controller
      */
     public function create()
     {
-        //
+        // Muestro la vista del formulario a crear
+        return view("admin.workshop.create");
     }
 
     /**
@@ -30,8 +37,25 @@ class WorkshopController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'start_time' => 'required|date',
+            'end_time' => 'nullable|date_format:H:i',
+        ]);
+
+        Workshop::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'price' => $request->price,
+            'start_time' => $request->start_time,
+            'end_time' => $request->end_time,
+        ]);
+
+        return redirect()->route("workshop.index")->with("success", "TALLER CREADO CON ÉXITO");
     }
+    
 
     /**
      * Display the specified resource.
@@ -46,7 +70,11 @@ class WorkshopController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        // Recibo el id del taller a editar
+        $workshop = Workshop::findOrFail($id);
+
+        // Lo mando a la vista
+        return view('admin.workshop.edit', ['workshop' => $workshop]);
     }
 
     /**
@@ -54,7 +82,36 @@ class WorkshopController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // Actualizamos los campos de la tabla
+        $campos = [
+            'name' => 'required',
+            'description' => 'required|min:10',
+            'price' => 'required',
+            'start_time' => 'required',
+            'end_time' => 'required'
+        ];
+
+        $mensaje = [
+            'required' => 'El campo :attribute está vacio'
+        ];
+
+        $request->validate($campos, $mensaje);
+
+        // Obtengo el id elegido a actualizar
+        $workshop = Workshop::findOrFail($id);
+
+        $data = [
+            'name' => $request->name,
+            'description' => $request->description,
+            'price' => $request->price,
+            'start_time' => $request->start_time,
+            'end_time' => $request->end_time
+        ];
+
+        $workshop->update($data);
+
+        // Redireccionamos con un mensaje de éxito
+        return redirect()->route('workshop.index')->with('success', 'Taller actualizado con éxito');
     }
 
     /**
@@ -62,6 +119,9 @@ class WorkshopController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // Recojo el id del taller a eliminar
+        $workshop = Workshop::findOrFail($id);
+        $workshop->delete();
+        return redirect()->route('workshop.index')->with('danger', 'Taller eliminado con éxito');
     }
 }

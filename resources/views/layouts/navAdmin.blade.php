@@ -17,7 +17,7 @@
           <a class="nav-link" href="{{ route('admin.student.index') }}">Alumnos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Talleres</a>
+          <a class="nav-link" href="{{ route('admin.workshop.index') }}">Talleres</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Contacto</a>
