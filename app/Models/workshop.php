@@ -14,6 +14,7 @@ class Workshop extends Model
         'name',
         'description',
         'price',
+        'date',
         'start_time',
         'end_time'
     ];

@@ -4,8 +4,9 @@
     @csrf
     <input type="text" name="name" id="name">
     <input type="text" name="description" id="description">
-    <input type="double" name="price" id="price">
-    <input type="datetime-local" name="start_time" id="start_time">
+    <input type="number" name="price" id="price" step="0.01">
+    <input type="date" name="date" id="date">
+    <input type="time" name="start_time" id="start_time">
     <input type="time" name="end_time" id="end_time">
     <input type="submit" value="ENVIAR">
 </form><br>

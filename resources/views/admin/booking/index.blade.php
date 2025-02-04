@@ -25,24 +25,24 @@
         <tr>
             <th>Código</th>
             <th>Nombre</th>
-            <th>Descripción</th>
-            <th>Precio</th>
-            <th>Inicio</th>
-            <th>Fin</th>
+            <th>Edad</th>
+            <th>Teléfono</th>
+            <th>Cantidad</th>
+            <th>Taller</th>
             <th colspan="2">Acciones</th>
         </tr>
     </thead>
     <tbody>
-        @foreach($workshops as $workshop)
+        @foreach($bookings as $booking)
         <tr>
-            <td>{{ $workshop->id }}</td>
-            <td>{{ $workshop->name }}</td>
-            <td>{{ $workshop->description }}</td>
-            <td>{{ $workshop->price }}</td>
-            <td>{{ $workshop->start_time }}</td>
-            <td>{{ $workshop->end_time }}</td>
+            <td>{{ $booking->id }}</td>
+            <td>{{ $booking->name }}</td>
+            <td>{{ $booking->age }}</td>
+            <td>{{ $booking->phone }}</td>
+            <td>{{ $booking->amount }}</td>
+            <td>{{ $booking->workshop->name ?? 'Sin Taller' }}</td>
             <td>
-                <form method="POST" action="{{ route('admin.workshop.destroy', $workshop->id) }}" onsubmit="return confirm('¿Estás seguro de que deseas eliminar a este estudiante?');">
+                <form method="POST" action="{{ route('admin.booking.destroy', $booking->id) }}" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta reserva?');">
                     @csrf
                     @method('DELETE')
                     <button type="submit">
@@ -51,7 +51,7 @@
                 </form>
             </td>
             <td>
-                <a href="{{ route('admin.workshop.edit', $workshop->id) }}">
+                <a href="{{ route('admin.booking.edit', $booking->id) }}">
                     Editar
                 </a>
             </td>
@@ -60,7 +60,7 @@
     </tbody>
 </table>
 @endif
+<a href="{{ route('booking.create') }}">Crear una reserva</a>
+<a href="{{ route('workshop.index') }}">Volver</a>
 
-<a href="{{ route('admin.workshop.create') }}">Ir al formulario</a>
-<a href="{{ route('booking.index') }}">Ver las reservas</a>
 @endsection

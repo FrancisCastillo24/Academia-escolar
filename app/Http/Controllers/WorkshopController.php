@@ -40,30 +40,24 @@ class WorkshopController extends Controller
         $request->validate([
             'name' => 'required',
             'description' => 'required',
-            'price' => 'required',
-            'start_time' => 'required|date',
-            'end_time' => 'nullable|date_format:H:i',
+            'price' => 'required|numeric|min:0',
+            'date' => 'required|date',
+            'start_time' => 'required',
+            'end_time' => 'nullable'
         ]);
 
         Workshop::create([
             'name' => $request->name,
             'description' => $request->description,
             'price' => $request->price,
+            'date' => $request->date,
             'start_time' => $request->start_time,
             'end_time' => $request->end_time,
         ]);
 
-        return redirect()->route("workshop.index")->with("success", "TALLER CREADO CON ÉXITO");
+        return redirect()->route("workshop.index")->with("success", "Taller creado con éxito");
     }
-    
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -82,37 +76,37 @@ class WorkshopController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        // Actualizamos los campos de la tabla
         $campos = [
             'name' => 'required',
-            'description' => 'required|min:10',
-            'price' => 'required',
+            'description' => 'required',
+            'price' => 'required|numeric|min:0',
+            'date' => 'required|date',
             'start_time' => 'required',
-            'end_time' => 'required'
+            'end_time' => 'nullable'
         ];
-
+    
         $mensaje = [
-            'required' => 'El campo :attribute está vacio'
+            'required' => 'El campo :attribute está vacío'
         ];
-
+    
         $request->validate($campos, $mensaje);
-
-        // Obtengo el id elegido a actualizar
+    
         $workshop = Workshop::findOrFail($id);
-
+    
         $data = [
             'name' => $request->name,
             'description' => $request->description,
             'price' => $request->price,
+            'date' => $request->date,
             'start_time' => $request->start_time,
-            'end_time' => $request->end_time
+            'end_time' => $request->end_time,
         ];
-
+    
         $workshop->update($data);
-
-        // Redireccionamos con un mensaje de éxito
+    
         return redirect()->route('workshop.index')->with('success', 'Taller actualizado con éxito');
     }
+    
 
     /**
      * Remove the specified resource from storage.
