@@ -29,6 +29,9 @@ Route::resource('student', StudentController::class);
 Route::resource('workshop', WorkshopController::class);
 Route::resource('booking', BookingController::class);
 
+// Rutas personalizadas para booking:
+Route::post('booking/{id}/add-booking', [BookingController::class, 'addBooking'])->name('booking.addBooking');
+
 
 // Ruta de los controladores para el administrador
 Route::prefix('admin') // Prefijo para todas las rutas del administrador

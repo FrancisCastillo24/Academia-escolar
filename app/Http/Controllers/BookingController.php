@@ -4,38 +4,71 @@ namespace App\Http\Controllers;
 
 use App\Models\Booking;
 use App\Models\Workshop;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        // Muestro el listado en el index
+        // Verificar si el usuario está autenticado
         $user = Auth::user();
-        $bookings = Booking::all();
+
+        if (!$user) {
+            // Si el usuario no está autenticado, redirige al índice de los talleres
+            return redirect()->route('workshop.index')->with('error', 'Vaya, ¡no estás registrado!');
+        }
+
+        // Verificar si el usuario es un administrador
         $workshops = Workshop::all();
+        if ($user->isAdmin()) {
+            // Si es administrador, mostrar todas las reservas
+            $bookings = Booking::all();
+        } else {
+            // Si el usuario no es administrador (usuario normal), obtener solo las reservas de ese usuario
+            $bookings = Booking::where('user_id', $user->id)->get();
+        }
 
-        // dd($bookings); // <-- Agrega esto para depurar y ver si hay datos
+        // Calcular el total a pagar con el método privado que has creado
+        $total = $this->calculateTotal($bookings);
 
-        $view = $user && $user->isAdmin() ? 'admin.booking.index' : 'user.booking.index';
-        return view($view, ["bookings" => $bookings, 'workshops' => $workshops]);
+        // Determinar la vista según el rol del usuario
+        $view = $user->isAdmin() ? 'admin.booking.index' : 'user.booking.index';
+        return view($view, ["bookings" => $bookings, 'workshops' => $workshops, "total" => $total]);
     }
+
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        // Muestro la vista del formulario a crear según el rol
+        // Verificar si el usuario está autenticado
+        if (!Auth::check()) {
+            return redirect()->route('workshop.index')->with('error', 'Vaya, ¡no estás registrado!');
+        }
+
+        // Obtener el usuario autenticado y los workshops disponibles
         $user = Auth::user();
         $workshops = Workshop::all();
-        $view = $user && $user->isAdmin() ? 'admin.booking.create' : 'user.booking.create';
+
+        // Determinar la vista según el rol del usuario
+        $view = $user->isAdmin() ? 'admin.booking.create' : 'user.booking.create';
+
+        // Retornar la vista correspondiente con los workshops
         return view($view, ['workshops' => $workshops]);
     }
+
+    public function show($bookings) 
+    {
+
+    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -47,7 +80,7 @@ class BookingController extends Controller
             'age' => 'required',
             'phone' => 'required',
             'amount' => 'required',
-            'workshop_id' => 'required',
+            'workshop_id' => 'required|exists:workshops,id',
         ]);
 
         Booking::create([
@@ -56,6 +89,7 @@ class BookingController extends Controller
             'phone' => $request->phone,
             'amount' => $request->amount,
             'workshop_id' => $request->workshop_id,
+            'user_id' => Auth::id(), // Asignar el usuario autenticado
         ]);
 
         return redirect()->route("booking.index")->with("success", "Reserva creado con éxito");
@@ -70,11 +104,11 @@ class BookingController extends Controller
         $booking = Booking::findOrFail($id);
         $workshops = Workshop::all(); // Asegurarse de obtener los workshops
         $user = Auth::user();
-        
+
         $view = $user && $user->isAdmin() ? 'admin.booking.edit' : 'user.booking.edit';
         return view($view, compact('booking', 'workshops'));
     }
-    
+
 
     /**
      * Update the specified resource in storage.
@@ -120,7 +154,33 @@ class BookingController extends Controller
     {
         // Recojo el id del taller a eliminar
         $booking = Booking::findOrFail($id);
+
+        // En caso de tener varias reservas de un taller
+        if ($booking->amount > 1) {
+            $booking->amount -= 1; // Se resta <un></un>a cantidad
+            $booking->save();
+            return redirect()->route('booking.index')->with('danger', 'Se ha cancelado una reserva del taller');
+        }
+
+        // Si solo hay una cantidad, se borra la reserva
         $booking->delete();
         return redirect()->route('booking.index')->with('danger', 'Reserva cancelada con éxito');
+    }
+
+    // Método para calcular el total a pagar en las reservas
+    private function calculateTotal($bookings)
+    {
+        return $bookings->sum(function ($booking) { // Recorre todas las reservas de cada taller
+            return $booking->workshop->price * $booking->amount; // Accedemos al precio de cada taller y sumamos todos los precios por la cantidad y devolvemos el total sumado
+        });
+    }
+
+    public function addBooking($id)
+    {
+        // Seleccionamos el la reserva
+        $booking = Booking::findOrFail($id);
+        $addBooking = $booking->amount++;
+        $booking->save();
+        return redirect()->route('booking.index')->with('success', 'Se ha reservado una entrada');
     }
 }

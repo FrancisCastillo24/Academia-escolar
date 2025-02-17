@@ -25,9 +25,9 @@
                 <tr>
                     <th scope="col">Código</th>
                     <th scope="col">Nombre</th>
-                    <th scope="col">Descripción</th>
-                    <th scope="col">Fecha de Inicio</th>
-                    <th scope="col">Fecha de Finalización</th>
+                    <th scope="col">Apellidos</th>
+                    <th scope="col">Dirección</th>
+                    <th scope="col">Fecha de Nacimiento</th>
                     <th scope="col">Acciones</th>
                 </tr>
             </thead>

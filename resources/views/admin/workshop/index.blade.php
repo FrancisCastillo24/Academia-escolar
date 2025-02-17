@@ -27,7 +27,7 @@
             <th>Nombre</th>
             <th>Descripción</th>
             <th>Precio</th>
-            <th>Inicio</th>
+            <th>Fecha - Hora Inicio</th>
             <th>Fin</th>
             <th colspan="2">Acciones</th>
         </tr>
@@ -39,7 +39,7 @@
             <td>{{ $workshop->name }}</td>
             <td>{{ $workshop->description }}</td>
             <td>{{ $workshop->price }}</td>
-            <td>{{ $workshop->start_time }}</td>
+            <td>{{ $workshop->date }} | {{ $workshop->start_time }}</td>
             <td>{{ $workshop->end_time }}</td>
             <td>
                 <form method="POST" action="{{ route('admin.workshop.destroy', $workshop->id) }}" onsubmit="return confirm('¿Estás seguro de que deseas eliminar a este estudiante?');">

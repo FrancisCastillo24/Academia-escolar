@@ -15,7 +15,8 @@ class Booking extends Model
         'age',
         'phone',
         'amount',
-        'workshop_id'
+        'workshop_id',
+        'user_id'
     ];
 
     // Cada reserva (booking) está asociada con un solo taller (workshop), esto significa que en la tabla reservas, cada registro tendrá un campo workshop_id que será una clave foránea que hace referencia al id de la tabla taller
@@ -26,4 +27,9 @@ class Booking extends Model
         return $this->belongsTo(Workshop::class);
     }
 
+    // Relación con User
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

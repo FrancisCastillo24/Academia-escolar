@@ -1,6 +1,6 @@
 <h1>INSCRIPCIÓN DE FORMULARIO</h1>
 
-<form action="{{ route('booking.index') }}" method="post">
+<form action="{{ route('booking.store') }}" method="post">
     @csrf
     <input type="text" name="name" id="name">
     <input type="number" name="age" id="age">
