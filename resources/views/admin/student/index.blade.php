@@ -12,9 +12,9 @@
     <div class="alert alert-success">
         <strong>¡Éxito!</strong> {{ session('success') }}
     </div>
-    @elseif(session('danger'))
-    <div class="alert alert-danger">
-        <strong>¡Error!</strong> {{ session('danger') }}
+    @elseif(session('success'))
+    <div class="alert alert-success">
+        <strong>¡Éxito!</strong> {{ session('success') }}
     </div>
     @endif
 
@@ -26,8 +26,10 @@
                     <th scope="col">Código</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">Apellidos</th>
+                    <th scope="col">Email</th>
                     <th scope="col">Dirección</th>
                     <th scope="col">Fecha de Nacimiento</th>
+                    <th scope="col">Teléfono</th>
                     <th scope="col">Acciones</th>
                 </tr>
             </thead>
@@ -36,16 +38,18 @@
                 <tr>
                     <td class="text-center" data-label="Código">{{ $student->id }}</td>
                     <td class="text-center" data-label="Nombre">{{ $student->name }}</td>
-                    <td class="text-center" data-label="Descripción">{{ $student->surname }}</td>
-                    <td class="text-center" data-label="Fecha de Inicio">{{ $student->address }}</td>
-                    <td class="text-center" data-label="Fecha de Finalización">{{ $student->date_of_birth }}</td>
+                    <td class="text-center" data-label="Nombre">{{ $student->surname }}</td>
+                    <td class="text-center" data-label="Nombre">{{ $student->email }}</td>
+                    <td class="text-center" data-label="Nombre">{{ $student->address }}</td>
+                    <td class="text-center" data-label="Nombre">{{ $student->date_of_birth }}</td>
+                    <td class="text-center" data-label="Nombre">{{ $student->phone }}</td>
                     <td class="text-center" data-label="Acciones">
                         <div class="d-flex justify-content-center gap-2">
-                            <a href="" class="btn btn-warning btn-sm">
+                            <a href="{{ route('student.edit', $student->id) }}" class="btn btn-warning btn-sm">
                                 Editar
                             </a>
 
-                            <form method="POST" action="" onsubmit="return confirm('¿Estás seguro de que deseas eliminar a este estudiante?');">
+                            <form method="POST" action="{{ route('student.destroy', $student->id) }}" onsubmit="return confirm('¿Estás seguro de que deseas eliminar a este estudiante?');">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm">
@@ -66,7 +70,7 @@
 
     <!-- Botón para añadir nuevo estudiante -->
     <div class="d-flex justify-content-end mt-4 mb-5">
-        <a href="" class="btn btn-success">
+        <a href="{{ route('admin.student.create') }}" class="btn btn-success">
             Añadir Nuevo Estudiante
         </a>
     </div>

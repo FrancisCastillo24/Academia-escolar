@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Student;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,95 +16,92 @@ class StudentController extends Controller
     {
         // ¿Usuario o administrador?
         $user = Auth::user();
-        $students = Student::paginate(5);
 
-        $view = $user && $user->isAdmin() ? 'admin.student.index' : 'user.student.index';
-        return view($view, ['students' => $students]);
+        // Solo mostrar los que son estudiantes
+        $students = User::where('role', 'user')->paginate(5);
+
+        if (!$user->isAdmin()) {
+            return abort(403, 'Acceso denegado');
+        }
+
+        return view('admin.student.index', ['students' => $students]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        // Crear alumno a este formulario
         return view('admin.student.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         // Validamos los campos
         $request->validate([
-            'name' => 'required',
-            'surname' => 'required',
-            'address' => 'required',
-            'date_of_birth' => 'required|date|after:start_date',
+            'name' => 'required|string|max:255',
+            'surname' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'address' => 'required|string|max:255',
+            'password' => 'required',
+            'date_of_birth' => 'required|date',
+            'phone' => 'required|numeric|digits_between:8,15',
+            'role' => 'required|in:user',
         ]);
 
-        // Creamos los estudiantes
-        Student::create([
+
+        // Creamos los cursos
+        User::create([
             'name' => $request->name,
             'surname' => $request->surname,
+            'email' => $request->email,
             'address' => $request->address,
-            'date_of_birth' => $request->date_of_birth
+            'password' => $request->password,
+            'date_of_birth' => $request->date_of_birth,
+            'phone' => $request->phone,
+            'role' => $request->role
         ]);
 
-        return redirect()->route("student.index")->with("success", "Alumno registrado en la base de datos");
+        return redirect()->route("student.index")->with("success", "Estudiante registrado con éxito");
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id) {}
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
         // Recibo el ID del curso que queremos editar
-        $studentEdit = Student::findOrFail($id);
+        $studentEdit = User::findOrFail($id);
 
         // Mandamos a la vista el curso seleccionado
         return view("admin.student.edit", ["student" => $studentEdit]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
-        // Actualizamos los campos de la tabla
         $campos = [
-            'name' => 'required',
-            'surname' => 'required',
-            'address' => 'required',
-            'date_of_birth' => 'required|date|after:start_date',
+            'name' => 'required|string|max:255',
+            'surname' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'address' => 'required|string|max:255',
+            'date_of_birth' => 'required|date',
+            'phone' => 'required|numeric|digits_between:8,15',
         ];
 
         $mensaje = [
-            'required' => 'El campo :attribute está vacio'
+            'required' => 'El campo :attribute está vacío'
         ];
 
         $request->validate($campos, $mensaje);
 
-        // Obtengo el curso de la base de datos
-        $student = Student::findOrFail($id);
+        $student = User::findOrFail($id);
 
-        // Actualizamos los campos de la base de datos
         $data = [
             'name' => $request->name,
             'surname' => $request->surname,
+            'email' => $request->email,
             'address' => $request->address,
-            'date_of_birth' => $request->date_of_birth
+            'date_of_birth' => $request->date_of_birth,
+            'phone' => $request->phone
         ];
 
         $student->update($data);
-        // Redireccionamos con un mensaje de éxito
-        return redirect()->route('student.index')->with('success', 'Alumno actualizado con éxito');
+
+        return redirect()->route('student.index')->with('success', 'Estudiante actualizado con éxito');
     }
 
     /**
@@ -112,8 +110,8 @@ class StudentController extends Controller
     public function destroy(string $id)
     {
         // Recojo el id del curso
-        $student = Student::findOrFail($id);
+        $student = User::findOrFail($id);
         $student->delete();
-        return redirect()->route('student.index')->with('danger', 'Alumno eliminado con éxito');
+        return redirect()->route('student.index')->with('success', 'Alumno eliminado con éxito');
     }
 }
