@@ -61,4 +61,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Booking::class);
     }
+
+    // public function students()
+    // {
+    //     return $this->hasMany(Student::class);  // Si la relación es uno a muchos
+    // }
+
+    public function student()
+    {
+        return $this->hasOne(Student::class);
+    }
 }

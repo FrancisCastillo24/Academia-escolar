@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Booking;
 use App\Models\Workshop;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -62,11 +61,6 @@ class BookingController extends Controller
 
         // Retornar la vista correspondiente con los workshops
         return view($view, ['workshops' => $workshops]);
-    }
-
-    public function show($bookings) 
-    {
-
     }
 
 

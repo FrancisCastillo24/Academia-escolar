@@ -25,6 +25,9 @@
         <li class="nav-item">
           <a class="nav-link" href="#">Reseñas</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="">Facturación</a>
+        </li>
 
         <!-- Menú desplegable -->
         <li class="nav-item dropdown">

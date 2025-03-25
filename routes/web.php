@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BillingController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\StudentController;
@@ -32,7 +33,6 @@ Route::resource('booking', BookingController::class);
 // Rutas personalizadas para booking:
 Route::post('booking/{id}/add-booking', [BookingController::class, 'addBooking'])->name('booking.addBooking');
 
-
 // Ruta de los controladores para el administrador
 Route::prefix('admin') // Prefijo para todas las rutas del administrador
     ->name('admin.') // Prefijo de nombres de las rutas
@@ -43,3 +43,4 @@ Route::prefix('admin') // Prefijo para todas las rutas del administrador
         Route::resource('workshop', WorkshopController::class); // Rutas para los talleres del administrador
         Route::resource('booking', BookingController::class); // Rutas para las reservas del administrador
     });
+    
